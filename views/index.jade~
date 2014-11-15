@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p Setting unit #{unit} in house #{house} to state #{state}
+  button.lampButton(data-action="bea").
+    be awesome
+
+  div(id='test')
+    form(id='skor', action='/', method='post')
+      p test
+      input.house(type='text', value='#{house}', name='house', size=15)
+      input#unit(type='text', value='#{unit}', name='unit', size=15)
+      input#state(type='text', value='#{state}', name='state', size=15)
+      input(type='submit', value='Do stuff')
+
+
+

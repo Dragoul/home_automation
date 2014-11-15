@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  h1= title
+  p Setting unit #{unit} in house #{house} to state #{state}
+  button.lampButton(data-action="bea") be awesome
+
+  div(id='test')
+    form(id='skor', action='/', method='post')
+
+      - var option_data_list = []
+      - var houses = []
+      - houses.push({value: '', label: '--Select House --'})
+      - houses.push({value: 'A', label: 'House A'})
+      - houses.push({value: 'B', label: 'House B'})
+      - houses.push({value: 'C', label: 'House C'})
+      - option_data_list.push({entries: houses, param_name: 'house'})
+
+      - var units = []
+      - units.push({value: '', label: '--Select Unit --'})
+      - units.push({value: '0', label: 'Unit 1'})
+      - units.push({value: '1', label: 'Unit 2'})
+      - units.push({value: '2', label: 'Unit 3'})
+      - option_data_list.push({entries: units, param_name: 'unit'})
+
+      - var states = []
+      - states.push({value: '', label: '--Select State --'})
+      - states.push({value: 'on', label: 'ON'})
+      - states.push({value: 'off', label: 'OFF'})
+      - option_data_list.push({entries: states, param_name: 'state'})
+      
+
+      each option_data in option_data_list
+        select(id='#{option_data.param_name}', name='#{option_data.param_name}', value='#{option_data.param_name}')
+          each opt in option_data.entries
+            option(value='#{opt.value}', selected=('#{eval(option_data.param_name)}'=='#{opt.value}')) #{opt.label}
+
+      input(type='submit', value='Do stuff')
+
+  input#search(type="search", placeholder="kalle")
+  h2#results
+  script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+  script(src="/javascripts/main.js")
+

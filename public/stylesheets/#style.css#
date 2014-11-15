@@ -1,0 +1,28 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#house {
+  background-color: rgb(150,255,0);
+}
+
+#input.unit {
+  background-color: rgb(0,255,0);
+}
+#input.state {
+  background-color: rgb(0,255,255);
+}
+
+#test {
+  background-color: rgb(150,255,200);
+  border: 5px solid gray;
+
+  box-sizing: border-box;
+  width: 10%;
+  box-shadow: 10px 10px 5px #AAAAAA;
+}
