@@ -9,24 +9,46 @@ router.get('/searching', function(req, res) {
 
 //router.param('times', '/^\d$/');
 
-sendMessage = function (house, unit, state, times) {
+sendMessage = function (house, unit, state, times, fun) {
     var exec  = require('child_process').exec, child;
 
-    child = exec('/root/work/433.out '
-		 + house + ' '
-		 + unit + ' '
-		 + state + ' '
-		 + times,
-		 function(error, stdout, stderr) {
-		     console.log('stdout: ' + stdout);
-		     console.log('stderr: ' + stderr);
-		     
-		     if(error !== null) {
-			 console.log('exec error: ' + error);
-		     }
-		 }
-		)
+    var cmd = '/root/work/433.out '
+	+ house + ' '
+	+ unit + ' '
+	+ state + ' '
+	+ times;
+    console.log('Running command: ' + cmd);
+    var child = exec(cmd);
+
+    child.stdout.on('data', function(data) {
+	console.log(data);	
+    });
+
+    child.stderr.on('data', function(data) {
+	console.log('stderr: ' + data);	
+    });
+
+    child.on('close', function(code) {
+	console.log('Exit code: ' + code);
+	fun();
+    });
 }
+router.post('/lights', function(req, res) {
+    console.log(req.body);
+    console.log('Peer address: ' + req.socket._peername.address);
+    console.log('House: ' + req.body.house);
+    console.log('Unit: ' + req.body.unit);
+    console.log('State: ' + req.body.state);
+
+    var house = req.body.house;
+    var unit = req.body.unit;
+    var state = req.body.state;
+
+    sendMessage(house, unit, state, 5, function() {
+	res.send({house: house, unit: unit, state: state});
+	console.log('Yay2');
+    });
+});
 
 router.post('/', function(req, res) {
 //    console.log(req);
@@ -41,15 +63,14 @@ router.post('/', function(req, res) {
     var state = req.body.state;
 
     sendMessage(house, unit, state, 5, function() {
-
-		     
-    res.render('index',
-	       {
-		   title: 'Lamp controller',
-		   house: house,
-		   unit: unit,
-		   state: state
-	       });
+	console.log('Yay2');
+	res.render('index',
+		   {
+		       title: 'Lamp controller',
+		       house: house,
+		       unit: unit,
+		       state: state
+		   });
     });
 });
 

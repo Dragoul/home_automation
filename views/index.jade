@@ -3,10 +3,8 @@ extends layout
 block content
   h1= title
   p Setting unit #{unit} in house #{house} to state #{state}
-  button.lampButton(data-action="bea") be awesome
 
   div(id='test')
-    form(id='skor', action='/', method='post')
 
       - var option_data_list = []
       - var houses = []
@@ -18,9 +16,9 @@ block content
 
       - var units = []
       - units.push({value: '', label: '--Select Unit --'})
-      - units.push({value: '0', label: 'Unit 1'})
-      - units.push({value: '1', label: 'Unit 2'})
-      - units.push({value: '2', label: 'Unit 3'})
+      - units.push({value: '0', label: 'Unit 0'})
+      - units.push({value: '1', label: 'Unit 1'})
+      - units.push({value: '2', label: 'Unit 2'})
       - option_data_list.push({entries: units, param_name: 'unit'})
 
       - var states = []
@@ -35,10 +33,8 @@ block content
           each opt in option_data.entries
             option(value='#{opt.value}', selected=('#{eval(option_data.param_name)}'=='#{opt.value}')) #{opt.label}
 
-      input(type='submit', value='Do stuff')
+      input#btn(type='submit', value='Do stuff')
 
-  input#search(type="search", placeholder="kalle")
-  h2#results
-  script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
-  script(src="/javascripts/main.js")
-
+      h2#results 
+      script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+      script(src="/javascripts/main.js")

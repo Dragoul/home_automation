@@ -7,19 +7,11 @@ a {
   color: #00B7FF;
 }
 
-#house {
-  background-color: rgb(150,255,0);
-}
-
-#unit {
-  background-color: rgb(0,255,0);
-}
-
 #test {
   padding: 15px;
   background-color: rgb(150,255,200);
   border: 5px solid gray;
 
-  width: 10%;
+  width: 30%;
   box-shadow: 10px 10px 5px #AAAAAA;
 }
