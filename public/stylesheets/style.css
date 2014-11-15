@@ -6,6 +6,10 @@ body {
 a {
   color: #00B7FF;
 }
+#hidden {
+    visibility: hidden;
+    background-color: rgb(150,200,200);
+}
 
 #test {
   padding: 15px;

@@ -46,12 +46,10 @@ router.post('/lights', function(req, res) {
 
     sendMessage(house, unit, state, 5, function() {
 	res.send({house: house, unit: unit, state: state});
-	console.log('Yay2');
     });
 });
 
 router.post('/', function(req, res) {
-//    console.log(req);
     console.log(req.body);
     console.log('Peer address: ' + req.socket._peername.address);
     console.log('House: ' + req.body.house);
@@ -63,7 +61,6 @@ router.post('/', function(req, res) {
     var state = req.body.state;
 
     sendMessage(house, unit, state, 5, function() {
-	console.log('Yay2');
 	res.render('index',
 		   {
 		       title: 'Lamp controller',
