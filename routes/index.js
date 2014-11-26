@@ -7,12 +7,10 @@ router.get('/searching', function(req, res) {
     console.log(val);
 });
 
-//router.param('times', '/^\d$/');
-
 sendMessage = function (house, unit, state, times, fun) {
     var exec  = require('child_process').exec, child;
 
-    var cmd = '/root/work/433.out '
+    var cmd = '/www/myapp/src/light '
 	+ house + ' '
 	+ unit + ' '
 	+ state + ' '
